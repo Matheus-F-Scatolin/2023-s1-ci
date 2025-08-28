@@ -83,4 +83,3 @@ def test_prohibited_special_characters_should_raise_exception():
     with pytest.raises(ProhibitedCharacterException):  # then
         # when
         validator.password_validate()
-

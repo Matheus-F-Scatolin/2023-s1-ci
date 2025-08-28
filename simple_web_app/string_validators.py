@@ -63,6 +63,7 @@ class EspecialCharacterValidator(Validator):
             msg = "Passwords must have at least 1 especial character!"
             raise EspecialCharacterException(detail=msg)
 
+
 class ProhibitedCharacterValidator(Validator):
     def __init__(self):
         self.prohibited_set = set('/^~')
