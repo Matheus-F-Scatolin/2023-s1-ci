@@ -3,6 +3,7 @@ from string import ascii_lowercase, ascii_uppercase, punctuation
 
 from .exceptions import (
     EspecialCharacterException,
+    ProhibitedCharacterException,
     MinimumLengthException,
     NoDigitException,
     NoLowerCaseException,
@@ -61,6 +62,16 @@ class EspecialCharacterValidator(Validator):
         if self.especial_set.isdisjoint(content_set):
             msg = "Passwords must have at least 1 especial character!"
             raise EspecialCharacterException(detail=msg)
+
+class ProhibitedCharacterValidator(Validator):
+    def __init__(self):
+        self.prohibited_set = set('/^~')
+
+    def validate(self, content):
+        content_set = set(content)
+        if not self.prohibited_set.isdisjoint(content_set):
+            msg = "Passwords cannot contain the following characters: / ^ ~"
+            raise ProhibitedCharacterException(detail=msg)
 
 
 class UpperCaseValidator(Validator):

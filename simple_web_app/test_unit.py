@@ -5,6 +5,7 @@ from .exceptions import (
     NoDigitException,
     NoLowerCaseException,
     EspecialCharacterException,
+    ProhibitedCharacterException,
     NoUpperCaseException,
 )
 from .models import PasswordValidator, ValidationResponse
@@ -74,3 +75,11 @@ def test_8_chars_with_no_upper_case_password_should_raise_exception():
     with pytest.raises(NoUpperCaseException):  # then
         # when
         validator.password_validate()
+
+def test_prohibited_special_characters_should_raise_exception():
+    # Caracteres especiais não podem ser / ^ ~
+    validator = PasswordValidator(content="C@avc@q1/")
+    with pytest.raises(ProhibitedCharacterException):  # then
+        # when
+        validator.password_validate()
+

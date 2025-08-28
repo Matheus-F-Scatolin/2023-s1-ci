@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from .string_validators import (
     DigitValidator,
     EspecialCharacterValidator,
+    ProhibitedCharacterValidator,
     LengthValidator,
     LowerCaseValidator,
     UpperCaseValidator,
@@ -31,6 +32,7 @@ class PasswordValidator(BaseModel):
             LowerCaseValidator(),
             UpperCaseValidator(),
             EspecialCharacterValidator(),
+            ProhibitedCharacterValidator(),
         ]
         return validators
 
